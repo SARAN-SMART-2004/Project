@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Employee</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+       <h1>Employee Details</h1>
+       {% if emp_list %}
+       {% for emp in emp_list %}
+       <table class="table">
+        <thead>
+            <tr>
+                <th> Name</th>
+                <th>No</th>
+                <th>Salary</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{emp.empName}}</td>
+                <td>{{emp.empNo}}</td>
+                <td>{{emp.empSalary}}</td>
+                <td>{{emp.empAddress}}</td>
+            </tr>
+        </tbody>
+       </table>
+       {% endfor %}
+        {% endif %}
+      
+        <script src=""></script>
+    </body>
+</html>
