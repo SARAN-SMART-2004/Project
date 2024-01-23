@@ -11,31 +11,11 @@
     </head>
     <body>
         <h1>Django forms</h1>
-        <form method='post'>
-            <div class="form-group">
-              <label for="EmployeeName"></label>
-              <input type="text"
-                class="form-control" name="{{form.empName}}" id="" aria-describedby="helpId" placeholder="Name">
-                <label for="EmployeeName"></label>
-                <input type="text"
-                  class="form-control" name="{{form.empNo}}" id="" aria-describedby="helpId" placeholder="No">
-        
-                <label for="EmployeeName"></label>
-                  <input type="text"
-                    class="form-control" name="{{form.empSalary}}" id="" aria-describedby="helpId" placeholder="Salary">
-        
-                    <label for="EmployeeName"></label>
-                    <input type="text"
-                      class="form-control" name="{{form.empAddress}}" id="" aria-describedby="helpId" placeholder="Address">
-              
-            </div>
-            {{form}}
-             {% csrf_token %}
-            <button type="Submit">
-                Submit
-            </button>
-        </form>
-    
+<form action="/employeesform" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
         {% for emp in form %}
         <table class="table">
          <thead>
@@ -56,7 +36,6 @@
          </tbody>
         </table>
         {% endfor %}
-       
        
         <script src="" async defer></script>
     </body>

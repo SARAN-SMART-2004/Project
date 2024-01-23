@@ -4,4 +4,5 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('employees',views.empDetails,name='EmployeesDetails'),
     path('employeesform',views.empDetailsForms,name='EmployeesDetails'),
+    path('cookies',views.cookiesCount,name='cookies'),
 ]

@@ -11,5 +11,12 @@ def empDetails(request):
     return render(request,'emp.html',context=emp_dict)
 def empDetailsForms(request):
     form=forms.EmployeeForms()
-    empInfo={'formList':form}
+    empInfo={'form':form}
+    #cookies code start
     return render(request,'forms.html',context=empInfo)
+def cookiesCount(request):
+    count=request.session.get('count',0)
+    totalcount=int(count)+1
+    request.session['count']=totalcount
+    return render(request,'cookies.html',{'count':totalcount})
+    
