@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+</head>
+<body>
+    <h1>Events</h1>
+    <ul>
+        {% for event in events %}
+            <li><a href="{{ url_for('event', event_id=loop.index - 1) }}">{{ event.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

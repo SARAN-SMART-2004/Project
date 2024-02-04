@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.name }}</title>
+</head>
+<body>
+    <h1>{{ event.name }}</h1>
+    <p>Date: {{ event.date }}</p>
+    <p>Location: {{ event.location }}</p>
+    {% if event.registration_required %}
+        <form action="{{ url_for('register', event_id=loop.index - 1) }}" method="post">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Register</button>
+        </form>
+    {% else %}
+        <p>Registration not required for this event.</p>
+    {% endif %}
+</body>
+</html>
