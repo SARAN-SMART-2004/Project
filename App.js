@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Button, FlatList, Keyboard, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import Header from './components/header';
 import TodoItems from './components/todoitem';
 import AddTodo from './components/addtodo';
@@ -16,37 +16,48 @@ export default function App() {
     })
   }
   const submitHandler=(text)=>{
+    if (text.length>3){
     setTodos((prevTodos)=> {
       return [
         {text:text,key:Math.random().toString()},
         ...prevTodos
       ]
-    })
+    })}
+    else{
+      Alert.alert('OOPS','The todo must be longer than the 3 characters',[
+        {text:'I Understood',onPress:()=>{console.log('Aler-Closed')}}
+      ])
+    }
   }
   
 
   return (
+    <TouchableWithoutFeedback
+    onPress={()=>{
+      Keyboard.dismiss();
+      console.log('keboard dismissed')
+    }}
+    >
     <View style={styles.container}>
       <Header />
       <View style={styles.content}>
-        
         <AddTodo submitHandler={submitHandler} />
-     
-      <View style={styles.itemlist}>
-        <FlatList 
-        data={todos}
-        renderItem={({item})=>(
-          <TodoItems item={item}
-          pressHandler={pressHandler}
-          />
-        )}
-        />
+        <View style={styles.itemlist}>
+          <FlatList 
+          data={todos}
+          renderItem={({item})=>(
+            <TodoItems item={item}
+            pressHandler={pressHandler}
+            />
+          )}
+           />
+        </View>
       </View>
-      </View>
-
       <StatusBar style="auto" />
     </View>
+    </TouchableWithoutFeedback>
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -58,10 +69,13 @@ const styles = StyleSheet.create({
     
   },
   itemlist:{
-    
+    flex:1,
+    // backgroundColor:'yellow'
     
   },
   content:{
+    flex:1,
+    // backgroundColor:'pink',
     margin:50,
   }
 
